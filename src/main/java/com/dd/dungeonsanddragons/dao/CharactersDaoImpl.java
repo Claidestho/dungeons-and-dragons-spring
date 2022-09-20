@@ -4,7 +4,7 @@ import com.dd.dungeonsanddragons.Character;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-
+// Le repository implémente les méthodes définies dans l'interface
 @Repository
 public class CharactersDaoImpl implements CharactersDao {
     public static Map<Integer, Character> charactersMap = new TreeMap<>();

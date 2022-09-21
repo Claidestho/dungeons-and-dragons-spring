@@ -27,7 +27,17 @@ public class CharactersDaoImpl implements CharactersDao {
 
     @Override
     public Character save(Character character) {
-        charactersMap.put(character.getId(), character);
+        if(character.getId() == 0) {
+            character.setId(charactersMap.size() + 1);
+            charactersMap.put(character.getId(), character);
+        } else {
+            Optional<Map.Entry<Integer, Character>> opCharacter = charactersMap.entrySet().stream().filter(elt -> elt.getKey() == character.getId()).findFirst();
+            if(opCharacter.isPresent()){
+                opCharacter.get().getValue().setName(character.getName());
+                opCharacter.get().getValue().setType(character.getType());
+                opCharacter.get().getValue().setHealthPoints(character.getHealthPoints());
+            }
+        }
         return character;
     }
 

@@ -1,10 +1,21 @@
 package com.dd.dungeonsanddragons;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Character {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Veuillez remplir le nom du personnage")
     private String name;
+    @NotBlank(message = "Veuillez remplir le type du personnage")
     private String type;
+    @Column(name = "HEALTHPOINTS")
+    @NotNull(message = "Veuillez remplir les PV du personnage")
     private int healthPoints;
 
     public Character(int id, String name, String type, int healthPoints) {
@@ -12,6 +23,9 @@ public class Character {
         this.name = name;
         this.type = type;
         this.healthPoints = healthPoints;
+    }
+
+    public Character() {
     }
 
     public void setId(int id) {

@@ -1,8 +1,10 @@
 package com.dd.dungeonsanddragons;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class Character {
@@ -16,6 +18,7 @@ public class Character {
     private String type;
     @Column(name = "HEALTHPOINTS")
     @NotNull(message = "Veuillez remplir les PV du personnage")
+    @Positive(message = "Les points de vie doivent être supérieurs à 0.")
     private int healthPoints;
 
     public Character(int id, String name, String type, int healthPoints) {
